@@ -1,0 +1,73 @@
+#containerpag {
+	min-height:300px;
+	text-align: center;
+	padding: 0px;
+	text-decoration: none;
+	width: 580px;
+	overflow:hidden;
+	margin-top:10px;
+
+}
+.shopp
+{ 
+	padding:1px;
+	position:relative; 
+	opacity:0;
+	margin-bottom:3px;
+	text-align:justify;
+	width:550px;
+	height:200px;
+}
+	
+#containerpag .shopp{
+	color:#000066;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	padding:5px 5px 12px 5px;
+	text-align:justify;
+	margin-top:5px;
+	margin-bottom:5px;
+		}
+		
+.search-background {
+	display: none;
+	font-size: 13px;
+	font-weight: bold;
+	height:160px;
+	position: absolute;
+	padding-top:140px;
+	text-align: center;
+	opacity:0.5;filter: alpha(opacity=50) ;
+	text-decoration: none;
+	width: 520px;
+	color:#FFFFFF;
+	text-shadow: #fff 0px 0px 20px;
+	}
+	
+search-background label{	
+
+	border:solid #66FF00 1px;
+}	
+
+#paging_button ul{ width: 510px; padding:0px; margin:8px;}
+
+#paging_button ul li { 
+
+	-moz-border-radius: 3px 3px 3px 3px;
+    background: none repeat scroll 0 0 #0091E6;
+    color: #FFFFFF;
+    float: left;
+    font-family: helvetica,arial,sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    margin: 0 2px 0px;
+    padding: 2px 2px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: none;
+	list-style-type:none; 
+    width: 20px;cursor:pointer;
+	}
+	
+#paging_button ul li:hover{background:#006699;}
+li:hover{ color: #CC0000; cursor: pointer; }

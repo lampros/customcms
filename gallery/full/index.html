@@ -1,0 +1,64 @@
+<?php include("/web/webpages/wmtools/site/scripts/config.php");?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	
+	<title>Slides, A Slideshow Plugin for jQuery</title>
+	
+	
+	<script src="gallery/full/js/slides.min.jquery.js"></script>
+	<script>
+		$(function(){
+			$('#products').slides({
+				preload: true,
+				preloadImage: 'img/loading.gif',
+				effect: 'slide, fade',
+				crossfade: true,
+				slideSpeed: 200,
+				fadeSpeed: 500,
+				generateNextPrev: true,
+				generatePagination: false
+			});
+		});
+	</script>
+	<link rel="stylesheet" href="gallery/full/css/global.css">
+</head>
+<body>
+<?php
+$res = mysql_query("SELECT photo_name, image50, full_image from gallery order by RAND() limit 15");
+$number = mysql_num_rows($res); 
+$n=0;
+while ($row=mysql_fetch_array($res)) 
+{
+$n++;
+$img[$n]['image']=$row['image50'];
+$img[$n]['full']=$row['full_image'];
+$img[$n]['name']=$row['photo_name'];
+}
+?>
+	<div id="container">
+		<div id="products_example">
+			<div id="products">
+				<div class="slides_container">
+<?php
+for($i=1; $i<$n;$i++){
+$full=$img[$i]['full'];
+$name=$img[$i]['name'];
+echo "<div style='border: none;'><img src='gallery/$full' alt='1144953 $i 2x'><br>$name</div>";					
+}
+?>
+				</div>
+				<ul class="pagination">
+<?php
+for($i=1; $i<$n;$i++){
+$full=$img[$i]['image'];
+echo "<li><a href='#'><img src='gallery/$full' width='50' alt='1144953 $i 2x'></a></li>";
+}
+?>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

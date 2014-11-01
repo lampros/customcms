@@ -1,0 +1,20 @@
+=== Changelog ===
+
+
+
+Version 1.1 (10.08.2014)
+
+-Added a new key in options: "afterShow"
+
+-Key "onSelect" in options is applied now for each file on selected
+
+-Added a new key in options: "captions". Now you can edit error texts in "captions.errors". Key "inputText" in options is no more available.
+
+-Key "template" in options now is a function with an array parameter
+
+-Fixed order of appearing thumbnails after select
+
+
+Version 1.2 (23.08.2014)
+
+-Fixed errors on "appendTo"

@@ -1,0 +1,107 @@
+<?php
+$mylogin=$_COOKIE['login'];
+$myname=$_COOKIE['name'];
+include("/web/webpages/wmtools/site/scripts/config.php");
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Lampros site</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Archivo+Narrow:400,700" rel="stylesheet" type="text/css">
+<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<script type='text/javascript' src='/jquery17.js'></script>
+<!--[if IE 6]>
+<link href="default_ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+</head>
+<body class='body' style='height: 100%'>
+<div id="header" class="container">
+	<div id="logo">
+		<h1><img src='images/logo1.png'></h1>
+	</div>
+	<div id="menu">
+		<ul>
+			<li class="active"><a href="/site/" accesskey="1" title="">Homepage</a></li>
+			<li style='margin-right: 0px;'><div id='sfrm' style='width: 140px;'><a href="#" accesskey="2" title="" onclick="$.post('scripts/search.php?appear', $('#myForm').serialize(), function(data) { $('#sfrm').html(data); }); return false;">Search</a></div></li>
+	<!--		<li style='margin-left: 0px;'><a href="#" accesskey="2" title="">Contact</a></li> -->
+		<?php
+if (! isset($_COOKIE['login'])) {
+echo "<li><a href='#' accesskey='3' title='' onclick=\"$.post('scripts/auth.php?drawform', $('#myForm').serialize(), function(data) { $('#win1').html(data); }); return false;\">Login</a></li>";
+}
+else
+{
+echo "<li><a href='#' accesskey='3' title='' onclick=\"$.post('scripts/auth.php?logout', $('#myForm').serialize(), function(data) { $('#win1').html(data); }); return false;\">Logout</a></li>";
+}
+		
+		
+		?>
+	   </ul>
+	</div>
+</div>
+<?php
+if (isset($_GET['admin']))
+{
+include("scripts/cms.php");
+}
+else
+{
+?>
+<div id="page" class="container">
+	<div id="content">
+<?php
+if ((!isset($_GET['type']))and(!isset($_GET['post']))) {echo "<div id='fp'></div><br><br><script>$('#fp').load('paginator/index.php?fp=true');</script>";}
+?>
+<?php 
+$type="sli";
+$post=$_GET['post'];
+include("paginator/index.php");
+
+?>
+	</div>
+	<div id="sidebar" style='position: relative;'>
+<?php
+if ($myname!="") {echo "<font style='position: absolute; top: -30px;'>Welcome, <b>$myname</b> ";
+if ($_COOKIE['login']=="admin") {echo " [<a href='?admin'>Admin area</a>]";}		
+echo "</font>";
+
+	}
+?>
+		<div id="sbox1">
+			<div class='ribbon' style='width: 260px; position: relative; top: -10px;' onclick="document.location.href='?type=ns';"><z>News</z> click here to open all news</div><br>
+<?php 
+include("scripts/items/news.php"); 
+?>
+		</div>
+<div id="gall">
+<?php include("gallery/gallery.php"); ?>
+</div><br><br>
+<?php include("scripts/video.php"); ?>
+		<div id="sbox2">
+			<h2>Test icons</h2>
+			<p class="testimonial">Freedom is your right.</p>
+			<div class="author"><img src="images/pic03.jpg" width="80" height="80" alt="" /><span class="name">Optimus Prime</span><span class="position">Autobot team leader</span></div>
+		</div>
+	</div>
+</div>
+<?php
+}
+?>
+<div id="footer" class="container">
+<div id="copyright" class="container">
+	<p>Copyright (c) 2014 lampros1984. All rights reserved. Design by <a href="http://wm-tools.net">Vitaliy</a></p>
+</div>
+</div>
+<div id='win1'></div>
+<script>
+$(document).mouseup(function (e) {
+    var container = $("#sfrm");
+    if (container.has(e.target).length === 0){
+        container.html("<a href=\"#\" accesskey=\"2\" title=\"\" onclick=\"$.post('scripts/search.php?appear', $('#myForm').serialize(), function(data) { $('#sfrm').html(data); }); return false;\">Search</a></div>");
+    }
+});
+</script>
+</body>
+</html>
